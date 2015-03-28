@@ -12,11 +12,12 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
-            BtnState = BtnStates.Select;
+            
             _graph = new Graph();
 
 
             Workspace_Resize(null, null);
+            BtnState = BtnStates.Select;
         }
 
 
@@ -48,6 +49,11 @@ namespace WindowsFormsApplication1
                 btnAddVertex.Enabled = value != BtnStates.AddVertex;
                 btnAddEdge.Enabled = value != BtnStates.AddEdge;
                 _btnState = value;
+
+                _panelState=PanelStates.Idle;
+                _selectedVertex = null;
+                _selectedEdge = null;
+                Redraw();
             }
         }
 
@@ -94,6 +100,8 @@ namespace WindowsFormsApplication1
                             if (_selectedVertex != null)
                             {
                                 _panelState = PanelStates.MovingVertex;
+                                _selectedEdge = null;
+                                
                                 return;
                             }
                             _selectedEdge = _graph.GetEdge(e.Location);

@@ -33,10 +33,12 @@
             // 
             // graphPanel1
             // 
-            this.graphPanel1.Location = new System.Drawing.Point(19, 19);
+            this.graphPanel1.BtnState = WindowsFormsApplication1.GraphPanel.BtnStates.Select;
+            this.graphPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.graphPanel1.Location = new System.Drawing.Point(0, 0);
             this.graphPanel1.Margin = new System.Windows.Forms.Padding(10);
             this.graphPanel1.Name = "graphPanel1";
-            this.graphPanel1.Size = new System.Drawing.Size(662, 540);
+            this.graphPanel1.Size = new System.Drawing.Size(765, 578);
             this.graphPanel1.TabIndex = 0;
             this.graphPanel1.Load += new System.EventHandler(this.graphPanel1_Load);
             // 

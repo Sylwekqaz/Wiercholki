@@ -121,6 +121,13 @@ namespace WindowsFormsApplication1
             if (startVertex!=stopVertex)
             {
                 var vector = stopVertex.Location.SubtractPoint(startVertex.Location);
+                var middlepoint = startVertex.Location.AddPoint(vector.MultiplyPoint(0.5));
+                //vector = vector.Orthogonal().MultiplyPoint(0.125);
+
+
+
+
+
 
                 vector = vector.Orthonormal().MultiplyPoint(20);
                 var startVector = vector.MultiplyPoint(((edges.Length - 1)/(double) 2));
@@ -128,8 +135,12 @@ namespace WindowsFormsApplication1
                 foreach (var edge in edges)
                 {
                     edge.Path = new GraphicsPath();
-                    edge.Path.AddBezier(edge.StartVertex.Location, edge.StartVertex.Location.SubtractPoint(startVector),
-                        edge.StopVertex.Location.SubtractPoint(startVector), edge.StopVertex.Location);
+                    edge.Path.AddBezier(
+                        edge.StartVertex.Location,
+                        middlepoint.SubtractPoint(startVector),
+                        middlepoint.SubtractPoint(startVector),
+                        edge.StopVertex.Location
+                        );
                     startVector = startVector.SubtractPoint(vector);
                 }
             }
