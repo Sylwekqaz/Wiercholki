@@ -75,7 +75,7 @@
             this.btnSelect.TabIndex = 0;
             this.btnSelect.Text = "Zaznacz";
             this.btnSelect.UseVisualStyleBackColor = true;
-            this.btnSelect.Click += new System.EventHandler(this.button1_Click);
+            this.btnSelect.Click += new System.EventHandler(this.BtnSelectClick);
             // 
             // btnAddVertex
             // 
@@ -85,7 +85,7 @@
             this.btnAddVertex.TabIndex = 1;
             this.btnAddVertex.Text = "Dodaj Wierzchołek";
             this.btnAddVertex.UseVisualStyleBackColor = true;
-            this.btnAddVertex.Click += new System.EventHandler(this.button2_Click);
+            this.btnAddVertex.Click += new System.EventHandler(this.BtnAddVertexClick);
             // 
             // btnAddEdge
             // 
@@ -95,7 +95,7 @@
             this.btnAddEdge.TabIndex = 2;
             this.btnAddEdge.Text = "Dodaj krawędź";
             this.btnAddEdge.UseVisualStyleBackColor = true;
-            this.btnAddEdge.Click += new System.EventHandler(this.button3_Click);
+            this.btnAddEdge.Click += new System.EventHandler(this.BtnAddEdgeClick);
             // 
             // Workspace
             // 
