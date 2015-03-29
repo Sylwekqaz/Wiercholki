@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing.Text;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
@@ -56,7 +53,15 @@ namespace WindowsFormsApplication1
                     _graphLayerGraphics.DrawEllipse(vertex == _selectedVertex ? _verticleSelectedPen : _verticlePen,
                         rectangle);
 
-                    
+                    StringFormat sf = new StringFormat();
+                    sf.LineAlignment = StringAlignment.Center;
+                    sf.Alignment = StringAlignment.Center;
+                    _graphLayerGraphics.DrawString(
+                        vertex.Label,
+                        new Font("Arial", 8, FontStyle.Regular),
+                        Brushes.Black,
+                        vertex.Location.SubtractPoint(new PointF(0, 15)),
+                        sf);
                 }
 
 
@@ -106,6 +111,11 @@ namespace WindowsFormsApplication1
             _graphLayerGraphics.SmoothingMode = SmoothingMode.AntiAlias;
             _tempLayerGraphics.SmoothingMode = SmoothingMode.AntiAlias;
             _selectLayerGraphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+
+            _graphLayerGraphics.TextRenderingHint = TextRenderingHint.AntiAlias;
+            _tempLayerGraphics.TextRenderingHint = TextRenderingHint.AntiAlias;
+            _selectLayerGraphics.TextRenderingHint = TextRenderingHint.AntiAlias;
 
             Redraw();
         }

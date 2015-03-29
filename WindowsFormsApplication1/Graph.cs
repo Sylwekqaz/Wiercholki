@@ -16,11 +16,25 @@ namespace WindowsFormsApplication1
 
         public List<Vertex> Vertices { get; private set; }
         public List<Edge> Edges { get; private set; }
+        public bool AutoCompleteGraph { get; set; }
+        public bool DirectedEdges { get; set; }
 
 
         public void AddVertex(PointF location)
         {
-            Vertices.Add(new Vertex() {Location = location});
+            var newVertices = new Vertex() {Location = location};
+            Vertices.Add(newVertices);
+            if (AutoCompleteGraph)
+            {
+                foreach (Vertex vertex in Vertices)
+                {
+                    if (newVertices == vertex)
+                    {
+                        continue;
+                    }
+                    AddEdge(newVertices, vertex);
+                }
+            }
         }
 
         public Vertex GetVertex(PointF location)
@@ -29,20 +43,20 @@ namespace WindowsFormsApplication1
         }
 
 
-        public void AddEdge(Vertex startVertex, Vertex stopVertex, bool directed = false)
+        public void AddEdge(Vertex startVertex, Vertex endVertex, bool directed = false)
         {
-            if (!(Vertices.Contains(startVertex) && Vertices.Contains(stopVertex)))
+            if (!(Vertices.Contains(startVertex) && Vertices.Contains(endVertex)))
             {
                 throw new Exception("Wierzchołek nie istnieje");
             }
             Edges.Add(new Edge()
             {
                 StartVertex = startVertex,
-                StopVertex = stopVertex,
-                Directed = directed
+                EndVertex = endVertex,
+                Directed = DirectedEdges
             });
 
-            CurveEdges(startVertex, stopVertex);
+            CurveEdges(startVertex, endVertex);
         }
 
 
@@ -50,24 +64,25 @@ namespace WindowsFormsApplication1
         {
             foreach (Vertex startVertex in Vertices)
             {
-                foreach (Vertex stopVertex in Vertices)
+                foreach (Vertex endVertex in Vertices)
                 {
-                    CurveEdges(startVertex, stopVertex);
+                    CurveEdges(startVertex, endVertex);
                 }
             }
         }
 
-        private void CurveEdges(Vertex startVertex, Vertex stopVertex)
+        private void CurveEdges(Vertex startVertex, Vertex endVertex)
         {
             Edge[] edges =
                 Edges.Where(
                     edge =>
-                        (edge.StartVertex == startVertex && edge.StopVertex == stopVertex) ||
-                        (edge.StartVertex == stopVertex && edge.StopVertex == startVertex)).ToArray(); // get multiple (loop) edges 
+                        (edge.StartVertex == startVertex && edge.EndVertex == endVertex) ||
+                        (edge.StartVertex == endVertex && edge.EndVertex == startVertex)).ToArray();
+            // get multiple (loop) edges 
 
-            if (startVertex != stopVertex)   // curve Multiple Edges
+            if (startVertex != endVertex) // curve Multiple Edges
             {
-                var vector = stopVertex.Location.SubtractPoint(startVertex.Location);
+                var vector = endVertex.Location.SubtractPoint(startVertex.Location);
                 var middlepoint = startVertex.Location.AddPoint(vector.MultiplyPoint(0.5));
                 //vector = vector.Orthogonal().MultiplyPoint(0.125);
 
@@ -82,7 +97,7 @@ namespace WindowsFormsApplication1
                         edge.StartVertex.Location,
                         middlepoint.SubtractPoint(startVector),
                         middlepoint.SubtractPoint(startVector),
-                        edge.StopVertex.Location
+                        edge.EndVertex.Location
                         );
                     startVector = startVector.SubtractPoint(vector);
                 }
@@ -95,7 +110,7 @@ namespace WindowsFormsApplication1
                     edge.Path = new GraphicsPath();
                     edge.Path.AddBezier(edge.StartVertex.Location,
                         edge.StartVertex.Location.AddPoint(new PointF(20*(i + 2), 0)),
-                        edge.StartVertex.Location.AddPoint(new PointF(0, 20*(i + 2))), edge.StopVertex.Location);
+                        edge.StartVertex.Location.AddPoint(new PointF(0, 20*(i + 2))), edge.EndVertex.Location);
                 }
             }
         }
@@ -103,6 +118,23 @@ namespace WindowsFormsApplication1
         public Edge GetEdge(PointF location)
         {
             return Edges.FirstOrDefault(edge => edge.Path.IsOutlineVisible(location, new Pen(Color.Black, 6)));
+        }
+
+        public void RemoveVertex(Vertex selectedVertex)
+        {
+            Edges.RemoveAll(edge => edge.StartVertex == selectedVertex || edge.EndVertex == selectedVertex);
+            Vertices.Remove(selectedVertex);
+        }
+
+        public void RemoveEdge(Edge selectedEdge)
+        {
+            Edges.Remove(selectedEdge);
+        }
+
+        public int GetVertexDegree(Vertex selectedVertex)
+        {
+            return Edges.Count(edge => edge.StartVertex == selectedVertex) +
+                   Edges.Count(edge => edge.EndVertex == selectedVertex);
         }
     }
 
@@ -120,7 +152,7 @@ namespace WindowsFormsApplication1
     {
         public Vertex StartVertex { get; set; }
 
-        public Vertex StopVertex { get; set; }
+        public Vertex EndVertex { get; set; }
 
 
         public GraphicsPath Path { get; internal set; }
