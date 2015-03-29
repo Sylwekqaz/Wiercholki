@@ -17,7 +17,23 @@ namespace WindowsFormsApplication1
         public List<Vertex> Vertices { get; private set; }
         public List<Edge> Edges { get; private set; }
         public bool AutoCompleteGraph { get; set; }
+
+        /// <summary>
+        /// Sets new edges as directed / undirected
+        /// </summary>
         public bool DirectedEdges { get; set; }
+
+        /// <summary> 
+        /// WARNING change property only prevent add new loop edge
+        /// </summary>
+        public bool AllowLoopEdges { get; set; }
+
+        /// <summary>
+        /// false - allow one bi-directional edge or two one-directional edge
+        /// true - allow all edges 
+        /// WARNING change property only prevent add new multi edge 
+        /// </summary>
+        public bool AllowMultipleEdge { get; set; } 
 
 
         public void AddVertex(PointF location)
@@ -43,22 +59,58 @@ namespace WindowsFormsApplication1
         }
 
 
-        public void AddEdge(Vertex startVertex, Vertex endVertex, bool directed = false)
+        public void AddEdge(Vertex startVertex, Vertex endVertex, bool directed)
         {
+            // terminate when loop edge is not allowed
+            if (startVertex == endVertex && !AllowLoopEdges)
+            {
+                return;
+            }
+
+
+            // chek if two vertex exist in graph
             if (!(Vertices.Contains(startVertex) && Vertices.Contains(endVertex)))
             {
-                throw new Exception("Wierzchołek nie istnieje");
+                throw new Exception("Wierzchołek nie istnieje w grafie");
             }
+
+
+            // terminate when multi-edge is not allowed
+            if (!AllowMultipleEdge)
+            {
+                var tempEdge =
+                    Edges.FirstOrDefault(edge => edge.StartVertex == startVertex && edge.EndVertex == endVertex);
+                if (tempEdge != null)
+                {
+                    return;
+                }
+                tempEdge =
+                    Edges.FirstOrDefault(
+                        edge => edge.StartVertex == endVertex && edge.EndVertex == endVertex && edge.Directed == false);
+                if (tempEdge != null)
+                {
+                    return;
+                }
+            }
+
+
+            // add vertex
             Edges.Add(new Edge()
             {
                 StartVertex = startVertex,
                 EndVertex = endVertex,
-                Directed = DirectedEdges
+                Directed = directed
             });
 
+
+            // update curves in loop-egde and multi-edge
             CurveEdges(startVertex, endVertex);
         }
 
+        public void AddEdge(Vertex startVertex, Vertex endVertex)
+        {
+            AddEdge(startVertex, endVertex, DirectedEdges);
+        }
 
         public void CurveEdges()
         {

@@ -16,11 +16,11 @@ namespace WindowsFormsApplication1
         private Bitmap _selectLayerBitmap;
         private readonly Pen _verticlePen = new Pen(Color.Black, 1);
         private readonly Pen _verticleSelectedPen = new Pen(Color.DeepSkyBlue, 3);
-        private readonly Pen _edgeDirectedPen = new Pen(Color.Black, 1) {CustomEndCap = new AdjustableArrowCap(3, 7)};
+        private readonly Pen _edgeDirectedPen = new Pen(Color.Black, 1) {CustomEndCap = new AdjustableArrowCap(3, 5)};
 
         private readonly Pen _edgeDirectedSelectedPen = new Pen(Color.DeepSkyBlue, 4)
         {
-            CustomEndCap = new AdjustableArrowCap(3, 7)
+            CustomEndCap = new AdjustableArrowCap(3, 5)
         };
 
         private readonly Pen _edgePen = new Pen(Color.Black, 1);
