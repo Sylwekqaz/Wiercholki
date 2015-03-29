@@ -10,7 +10,7 @@ namespace WindowsFormsApplication1
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
 
-            _graph = new Graph();
+            _graph = new Graph(){AllowLoopEdges = true,AllowMultipleEdge = true,DirectedEdges = true};
 
 
             Workspace_Resize(null, null);
