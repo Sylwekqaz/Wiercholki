@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace GraphPanel
 {
     partial class GraphPanel
     {
@@ -43,7 +43,7 @@ namespace WindowsFormsApplication1
         private PanelStates _panelState = PanelStates.Idle;
         private Vertex _selectedVertex;
         private Edge _selectedEdge;
-        private Graph _graph;
+        public Graph Graph { get; private set; }
 
         private void BtnSelectClick(object sender, EventArgs e)
         {
@@ -68,7 +68,7 @@ namespace WindowsFormsApplication1
                     switch (BtnState)
                     {
                         case BtnStates.Select:
-                            _selectedVertex = _graph.GetVertex(e.Location);
+                            _selectedVertex = Graph.GetVertex(e.Location);
                             if (_selectedVertex != null)
                             {
                                 _panelState = PanelStates.MovingVertex;
@@ -77,7 +77,7 @@ namespace WindowsFormsApplication1
                                 BottomMenu_SelectedIndexChanged(null, null);
                                 return;
                             }
-                            _selectedEdge = _graph.GetEdge(e.Location);
+                            _selectedEdge = Graph.GetEdge(e.Location);
                             if (_selectedEdge != null)
                             {
                                 BottomMenu.SelectedIndex = 4;
@@ -113,11 +113,11 @@ namespace WindowsFormsApplication1
 
                             break;
                         case BtnStates.AddVertex:
-                            _graph.AddVertex(e.Location);
+                            Graph.AddVertex(e.Location);
                             break;
                         case BtnStates.AddEdge:
 
-                            var startVertex = _graph.GetVertex(e.Location);
+                            var startVertex = Graph.GetVertex(e.Location);
                             if (startVertex != null)
                             {
                                 _selectedVertex = startVertex;
@@ -141,10 +141,10 @@ namespace WindowsFormsApplication1
                     }
 
 
-                    var endVertex = _graph.GetVertex(e.Location);
+                    var endVertex = Graph.GetVertex(e.Location);
                     if (endVertex != null)
                     {
-                        _graph.AddEdge(_selectedVertex, endVertex);
+                        Graph.AddEdge(_selectedVertex, endVertex);
 
                         _panelState = PanelStates.Idle;
                         _selectedVertex = null;

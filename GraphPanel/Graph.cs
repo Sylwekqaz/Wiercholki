@@ -4,9 +4,9 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 
-namespace WindowsFormsApplication1
+namespace GraphPanel
 {
-    internal class Graph
+    public class Graph
     {
         public Graph()
         {
@@ -33,7 +33,7 @@ namespace WindowsFormsApplication1
         /// true - allow all edges 
         /// WARNING change property only prevent add new multi edge 
         /// </summary>
-        public bool AllowMultipleEdge { get; set; } 
+        public bool AllowMultipleEdge { get; set; }
 
 
         public void AddVertex(PointF location)
@@ -192,7 +192,7 @@ namespace WindowsFormsApplication1
 
     #region additional types
 
-    internal class Vertex
+    public class Vertex
     {
         public PointF Location { get; set; }
 
@@ -200,7 +200,7 @@ namespace WindowsFormsApplication1
     }
 
 
-    internal class Edge
+    public class Edge
     {
         public Vertex StartVertex { get; set; }
 
@@ -211,6 +211,8 @@ namespace WindowsFormsApplication1
 
 
         public bool Directed { get; set; }
+
+        public int Value { get; set; }
     }
 
     #endregion

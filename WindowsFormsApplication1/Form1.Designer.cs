@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.graphPanel1 = new WindowsFormsApplication1.GraphPanel();
+            this.graphPanel1 = new GraphPanel.GraphPanel();
             this.SuspendLayout();
             // 
             // graphPanel1
             // 
-            this.graphPanel1.BtnState = WindowsFormsApplication1.GraphPanel.BtnStates.Select;
+            this.graphPanel1.BtnState = GraphPanel.GraphPanel.BtnStates.Select;
             this.graphPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.graphPanel1.Location = new System.Drawing.Point(0, 0);
             this.graphPanel1.Margin = new System.Windows.Forms.Padding(10);
@@ -56,7 +56,7 @@
 
         #endregion
 
-        private GraphPanel graphPanel1;
+        private GraphPanel.GraphPanel graphPanel1;
     }
 }
 

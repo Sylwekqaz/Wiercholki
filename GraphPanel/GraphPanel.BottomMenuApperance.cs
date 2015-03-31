@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Globalization;
 
-namespace WindowsFormsApplication1
+namespace GraphPanel
 {
     partial class GraphPanel
     {
@@ -13,10 +13,10 @@ namespace WindowsFormsApplication1
                 case 0:
                     break;
                 case 1:
-                    cbAutoCompleteGraph.Checked = _graph.AutoCompleteGraph;
+                    cbAutoCompleteGraph.Checked = Graph.AutoCompleteGraph;
                     break;
                 case 2:
-                    cbDirected.Checked = _graph.DirectedEdges;
+                    cbDirected.Checked = Graph.DirectedEdges;
                     break;
                 case 3:
                     if (_selectedVertex == null)
@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
                     tbVertexLabel.Text = _selectedVertex.Label;
                     tbVertexX.Text = _selectedVertex.Location.X.ToString(CultureInfo.CurrentCulture);
                     tbVertexY.Text = _selectedVertex.Location.Y.ToString(CultureInfo.InvariantCulture);
-                    lblVertexDegree.Text = _graph.GetVertexDegree(_selectedVertex).ToString();
+                    lblVertexDegree.Text = Graph.GetVertexDegree(_selectedVertex).ToString();
                     _autoFillInprogress = false;
                     break;
                 case 4:
@@ -40,12 +40,12 @@ namespace WindowsFormsApplication1
 
         private void cbAutoCompleteGraph_CheckedChanged(object sender, EventArgs e)
         {
-            _graph.AutoCompleteGraph = cbAutoCompleteGraph.Checked;
+            Graph.AutoCompleteGraph = cbAutoCompleteGraph.Checked;
         }
 
         private void cbDirected_CheckedChanged(object sender, EventArgs e)
         {
-            _graph.DirectedEdges = cbDirected.Checked;
+            Graph.DirectedEdges = cbDirected.Checked;
         }
 
         private bool _autoFillInprogress;
@@ -95,7 +95,7 @@ namespace WindowsFormsApplication1
         {
             if (_selectedVertex != null)
             {
-                _graph.RemoveVertex(_selectedVertex);
+                Graph.RemoveVertex(_selectedVertex);
                 _selectedVertex = null;
             }
             Redraw();
@@ -106,7 +106,7 @@ namespace WindowsFormsApplication1
         {
             if (_selectedEdge != null)
             {
-                _graph.RemoveEdge(_selectedEdge);
+                Graph.RemoveEdge(_selectedEdge);
                 _selectedVertex = null;
             }
             Redraw();

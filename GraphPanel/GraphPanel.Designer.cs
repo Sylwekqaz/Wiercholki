@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace GraphPanel
 {
     partial class GraphPanel
     {

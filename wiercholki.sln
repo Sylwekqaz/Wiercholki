@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lepsiajsze wiercholki", "WindowsFormsApplication1\Lepsiajsze wiercholki.csproj", "{6AD46B6E-84B1-4D6D-8928-E8D0BA0F6AA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphPanel", "GraphPanel\GraphPanel.csproj", "{FB3227A7-329F-4A3D-853B-CFBA844FCEA4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6AD46B6E-84B1-4D6D-8928-E8D0BA0F6AA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AD46B6E-84B1-4D6D-8928-E8D0BA0F6AA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AD46B6E-84B1-4D6D-8928-E8D0BA0F6AA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB3227A7-329F-4A3D-853B-CFBA844FCEA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB3227A7-329F-4A3D-853B-CFBA844FCEA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB3227A7-329F-4A3D-853B-CFBA844FCEA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB3227A7-329F-4A3D-853B-CFBA844FCEA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

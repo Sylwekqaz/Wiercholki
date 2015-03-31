@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace GraphPanel
 {
     public partial class GraphPanel : UserControl
     {
@@ -10,7 +10,7 @@ namespace WindowsFormsApplication1
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
 
-            _graph = new Graph(){AllowLoopEdges = true,AllowMultipleEdge = true,DirectedEdges = true};
+            Graph = new Graph(){AllowLoopEdges = true,AllowMultipleEdge = true,DirectedEdges = true};
 
 
             Workspace_Resize(null, null);

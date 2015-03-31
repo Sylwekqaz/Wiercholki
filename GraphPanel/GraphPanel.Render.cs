@@ -4,7 +4,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace GraphPanel
 {
     partial class GraphPanel
     {
@@ -28,7 +28,7 @@ namespace WindowsFormsApplication1
 
         private void DrawTempEdge(PointF location)
         {
-            Vertex closestPoint = _graph.GetVertex(location);
+            Vertex closestPoint = Graph.GetVertex(location);
             if (closestPoint != null)
             {
                 location = closestPoint.Location;
@@ -46,7 +46,7 @@ namespace WindowsFormsApplication1
                 _tempLayerGraphics.Clear(Color.Transparent);
                 _selectLayerGraphics.Clear(Color.Transparent);
 
-                foreach (Vertex vertex in _graph.Vertices)
+                foreach (Vertex vertex in Graph.Vertices)
                 {
                     var rectangle = new RectangleF(vertex.Location.X - 5, vertex.Location.Y - 5, 10, 10);
 
@@ -65,9 +65,9 @@ namespace WindowsFormsApplication1
                 }
 
 
-                foreach (Edge edge in _graph.Edges)
+                foreach (Edge edge in Graph.Edges)
                 {
-                    _graph.CurveEdges();
+                    Graph.CurveEdges();
                     _graphLayerGraphics.DrawPath(edge.Directed ? _edgeDirectedPen : _edgePen, edge.Path);
                     if (edge == _selectedEdge)
                     {

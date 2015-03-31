@@ -1,7 +1,7 @@
 using System;
 using System.Drawing;
 
-namespace WindowsFormsApplication1
+namespace GraphPanel
 {
     internal static class VectorOperationsHelper
     {
