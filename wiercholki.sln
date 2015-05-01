@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lepsiajsze wiercholki", "WindowsFormsApplication1\Lepsiajsze wiercholki.csproj", "{6AD46B6E-84B1-4D6D-8928-E8D0BA0F6AA7}"
 EndProject

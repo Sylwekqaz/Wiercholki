@@ -25,7 +25,7 @@ namespace WindowsFormsApplication1
         }
 
 
-        private int[,] StwórzMacierzSąciedzctwa()
+        private int[,] StwórzMacierzSąciedzctwa(int dimension)  
         {
             throw new NotImplementedException();
             

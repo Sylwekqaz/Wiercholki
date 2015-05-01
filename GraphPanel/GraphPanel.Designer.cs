@@ -31,6 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSelect = new System.Windows.Forms.Button();
+            this.btnGenerateMatrix = new System.Windows.Forms.Button();
             this.btnAddVertex = new System.Windows.Forms.Button();
             this.btnAddEdge = new System.Windows.Forms.Button();
             this.Workspace = new System.Windows.Forms.Panel();
@@ -91,6 +92,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnSelect);
             this.flowLayoutPanel1.Controls.Add(this.btnAddVertex);
             this.flowLayoutPanel1.Controls.Add(this.btnAddEdge);
+            this.flowLayoutPanel1.Controls.Add(this.btnGenerateMatrix);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -106,6 +108,16 @@
             this.btnSelect.Text = "Zaznacz";
             this.btnSelect.UseVisualStyleBackColor = true;
             this.btnSelect.Click += new System.EventHandler(this.BtnSelectClick);
+            // 
+            // btnGenerateMatrix
+            // 
+            this.btnGenerateMatrix.Location = new System.Drawing.Point(302, 3);
+            this.btnGenerateMatrix.Name = "btnGenerateMatrix";
+            this.btnGenerateMatrix.Size = new System.Drawing.Size(187, 23);
+            this.btnGenerateMatrix.TabIndex = 0;
+            this.btnGenerateMatrix.Text = "Generuj Macierz Sąsiedztwa";
+            this.btnGenerateMatrix.UseVisualStyleBackColor = true;
+            this.btnGenerateMatrix.Click += new System.EventHandler(this.btnGenerateMatrix_Click);
             // 
             // btnAddVertex
             // 
@@ -161,9 +173,9 @@
             // SelectTab
             // 
             this.SelectTab.Controls.Add(this.label1);
-            this.SelectTab.Location = new System.Drawing.Point(4, 24);
+            this.SelectTab.Location = new System.Drawing.Point(4, 5);
             this.SelectTab.Name = "SelectTab";
-            this.SelectTab.Size = new System.Drawing.Size(665, 66);
+            this.SelectTab.Size = new System.Drawing.Size(665, 85);
             this.SelectTab.TabIndex = 3;
             this.SelectTab.Text = "Select";
             this.SelectTab.UseVisualStyleBackColor = true;
@@ -181,9 +193,9 @@
             // 
             this.AddVertexTab.Controls.Add(this.cbAutoCompleteGraph);
             this.AddVertexTab.Controls.Add(this.label2);
-            this.AddVertexTab.Location = new System.Drawing.Point(4, 24);
+            this.AddVertexTab.Location = new System.Drawing.Point(4, 5);
             this.AddVertexTab.Name = "AddVertexTab";
-            this.AddVertexTab.Size = new System.Drawing.Size(665, 66);
+            this.AddVertexTab.Size = new System.Drawing.Size(665, 85);
             this.AddVertexTab.TabIndex = 4;
             this.AddVertexTab.Text = "Add vertex";
             this.AddVertexTab.UseVisualStyleBackColor = true;
@@ -212,9 +224,9 @@
             // 
             this.AddEdgeTab.Controls.Add(this.cbDirected);
             this.AddEdgeTab.Controls.Add(this.label3);
-            this.AddEdgeTab.Location = new System.Drawing.Point(4, 24);
+            this.AddEdgeTab.Location = new System.Drawing.Point(4, 5);
             this.AddEdgeTab.Name = "AddEdgeTab";
-            this.AddEdgeTab.Size = new System.Drawing.Size(665, 66);
+            this.AddEdgeTab.Size = new System.Drawing.Size(665, 85);
             this.AddEdgeTab.TabIndex = 5;
             this.AddEdgeTab.Text = "Add edge";
             this.AddEdgeTab.UseVisualStyleBackColor = true;
@@ -350,9 +362,9 @@
             // EditEdgeTab
             // 
             this.EditEdgeTab.Controls.Add(this.btnRemoveEdge);
-            this.EditEdgeTab.Location = new System.Drawing.Point(4, 24);
+            this.EditEdgeTab.Location = new System.Drawing.Point(4, 5);
             this.EditEdgeTab.Name = "EditEdgeTab";
-            this.EditEdgeTab.Size = new System.Drawing.Size(665, 66);
+            this.EditEdgeTab.Size = new System.Drawing.Size(665, 85);
             this.EditEdgeTab.TabIndex = 7;
             this.EditEdgeTab.Text = "Edit edge";
             this.EditEdgeTab.UseVisualStyleBackColor = true;
@@ -398,6 +410,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Button btnAddVertex;
+        private System.Windows.Forms.Button btnGenerateMatrix;
         private System.Windows.Forms.Button btnAddEdge;
         private System.Windows.Forms.Panel Workspace;
         private System.Windows.Forms.TabControl BottomMenu;

@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Threading;
+using System.Windows.Forms;
 
 namespace GraphPanel
 {
@@ -15,6 +16,13 @@ namespace GraphPanel
 
             Workspace_Resize(null, null);
             BtnState = BtnStates.Select;
+        }
+
+        private void btnGenerateMatrix_Click(object sender, System.EventArgs e)
+        {
+            int dim = Graph.CountVerticles();
+            int? [,] matrix = new int?[dim, dim];
+            Graph.FloydWarschalAlghoritm(matrix);
         }
     }
 }

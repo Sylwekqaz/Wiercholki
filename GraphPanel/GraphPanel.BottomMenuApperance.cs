@@ -52,8 +52,10 @@ namespace GraphPanel
 
         private void VertexTextChanged()
         {
+            
             if (!_autoFillInprogress)
             {
+                
                 if (_selectedVertex == null)
                 {
                     BottomMenu.SelectedIndex = 0;

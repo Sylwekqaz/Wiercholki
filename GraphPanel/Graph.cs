@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace GraphPanel
         public List<Vertex> Vertices { get; private set; }
         public List<Edge> Edges { get; private set; }
         public bool AutoCompleteGraph { get; set; }
-
+        public int Numerator = 0;
         /// <summary>
         /// Sets new edges as directed / undirected
         /// </summary>
@@ -35,13 +36,17 @@ namespace GraphPanel
         /// </summary>
         public bool AllowMultipleEdge { get; set; }
 
+        
 
         public void AddVertex(PointF location)
         {
-            var newVertices = new Vertex() {Location = location};
+            string num = Numerator.ToString();
+            var newVertices = new Vertex() {Location = location, Label = num};
+            Numerator++;
+       
             Vertices.Add(newVertices);
             if (AutoCompleteGraph)
-            {
+            {                
                 foreach (Vertex vertex in Vertices)
                 {
                     if (newVertices == vertex)
@@ -58,6 +63,63 @@ namespace GraphPanel
             return Vertices.FirstOrDefault(vertex => vertex.Location.GetDistance(location) < 12);
         }
 
+        public int CountVerticles()
+        {
+            int suma = 0;
+
+            foreach (var vert in Vertices)
+            {
+                suma++;
+            }
+            return suma;
+        }
+
+        public void FloydWarschalAlghoritm(int?[,] matrix)
+        {
+            // macierz n x n jest zadeklarowana wczesniej.
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    if (i == j )
+                    {
+                        matrix[i, j] = 0;  //0 na przekątnej, gdzie indziej null.
+                    }
+                }
+            }
+            foreach (var edge in Edges)  //wazna kolejnosc krawedzi
+                //domyslnie wiercholki numerujemy od 0 do n. Moze byc alfabetycznie
+                //dlatego krawedzie mamy po kolei.
+            {
+              // dla kazdej krawedzi edytuje macierz
+
+             //Następnie dla każdej krawędzi u–v grafu w komórce d[u,v] 
+             //   umieszczamy wagę krawędzi w(u–v). Wartość d[i,j] = null oznacza, że wierzchołek i-ty nie łączy się krawędzią 
+             //   z wierzchołkiem j-tym (ale, jak zobaczymy dalej, może istnieć ścieżka łącząca te wierzchołki, a wtedy algorytm wprowadzi do d[i,j] jej koszt).
+                int start = Convert.ToInt32(edge.StartVertex.Label);
+                int end = Convert.ToInt32(edge.EndVertex.Label);
+                //domyslnie value ustawiłem na 1.
+                if (start != end) matrix[start, end] = edge.Value;
+                if (edge.Directed == false) matrix[end, start] = edge.Value;
+            }
+
+
+            for (int k = 0; k < matrix.GetLength(0) ;  k++) //dla kazdego wierzcholka
+            {
+                for (int u = 0; u < matrix.GetLength(0); u++)
+                {
+                    for (int v = 0; v < matrix.GetLength(0); v++)
+                    {
+                        // d[u,v] > d[u,k] + d[k,v].
+                        if (matrix[u, v] > matrix[u, k] + matrix[k, v])
+                        {
+                            matrix[u, v] = matrix[u, k] + matrix[k, v];
+                        }
+                    }
+                }
+            }
+
+        }
 
         public void AddEdge(Vertex startVertex, Vertex endVertex, bool directed)
         {
@@ -196,7 +258,7 @@ namespace GraphPanel
     {
         public PointF Location { get; set; }
 
-        public String Label { get; set; }
+        public string Label { get; set; }
     }
 
 
@@ -212,7 +274,7 @@ namespace GraphPanel
 
         public bool Directed { get; set; }
 
-        public int Value { get; set; }
+        public int Value = 1;  // { get; set; }
     }
 
     #endregion
