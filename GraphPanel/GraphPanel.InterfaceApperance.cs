@@ -144,7 +144,10 @@ namespace GraphPanel
                     var endVertex = Graph.GetVertex(e.Location);
                     if (endVertex != null)
                     {
-                        Graph.AddEdge(_selectedVertex, endVertex);
+                        int result;
+                        int.TryParse(tbAddEdgeValue.Text, out result);
+
+                        Graph.AddEdge(_selectedVertex, endVertex, result);
 
                         _panelState = PanelStates.Idle;
                         _selectedVertex = null;

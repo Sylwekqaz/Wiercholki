@@ -13,7 +13,6 @@ namespace GraphPanel
                 case 0:
                     break;
                 case 1:
-                    cbAutoCompleteGraph.Checked = Graph.AutoCompleteGraph;
                     break;
                 case 2:
                     cbDirected.Checked = Graph.DirectedEdges;
@@ -32,16 +31,13 @@ namespace GraphPanel
                     _autoFillInprogress = false;
                     break;
                 case 4:
+                    tbEditEdgeValue.Text = _selectedEdge.Value.ToString();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
 
-        private void cbAutoCompleteGraph_CheckedChanged(object sender, EventArgs e)
-        {
-            Graph.AutoCompleteGraph = cbAutoCompleteGraph.Checked;
-        }
 
         private void cbDirected_CheckedChanged(object sender, EventArgs e)
         {

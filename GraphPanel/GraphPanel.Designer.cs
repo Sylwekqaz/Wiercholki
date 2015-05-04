@@ -31,18 +31,18 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSelect = new System.Windows.Forms.Button();
-            this.btnGenerateMatrix = new System.Windows.Forms.Button();
             this.btnAddVertex = new System.Windows.Forms.Button();
             this.btnAddEdge = new System.Windows.Forms.Button();
+            this.btnGenerateMatrix = new System.Windows.Forms.Button();
             this.Workspace = new System.Windows.Forms.Panel();
             this.BottomMenu = new System.Windows.Forms.TabControl();
             this.SelectTab = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
             this.AddVertexTab = new System.Windows.Forms.TabPage();
-            this.cbAutoCompleteGraph = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.AddEdgeTab = new System.Windows.Forms.TabPage();
-            this.cbDirected = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbAddEdgeValue = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.EditVertexTab = new System.Windows.Forms.TabPage();
             this.tbVertexY = new System.Windows.Forms.NumericUpDown();
@@ -55,7 +55,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.EditEdgeTab = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tbEditEdgeValue = new System.Windows.Forms.TextBox();
             this.btnRemoveEdge = new System.Windows.Forms.Button();
+            this.cbDirected = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.BottomMenu.SuspendLayout();
@@ -109,16 +112,6 @@
             this.btnSelect.UseVisualStyleBackColor = true;
             this.btnSelect.Click += new System.EventHandler(this.BtnSelectClick);
             // 
-            // btnGenerateMatrix
-            // 
-            this.btnGenerateMatrix.Location = new System.Drawing.Point(302, 3);
-            this.btnGenerateMatrix.Name = "btnGenerateMatrix";
-            this.btnGenerateMatrix.Size = new System.Drawing.Size(187, 23);
-            this.btnGenerateMatrix.TabIndex = 0;
-            this.btnGenerateMatrix.Text = "Generuj Macierz Sąsiedztwa";
-            this.btnGenerateMatrix.UseVisualStyleBackColor = true;
-            this.btnGenerateMatrix.Click += new System.EventHandler(this.btnGenerateMatrix_Click);
-            // 
             // btnAddVertex
             // 
             this.btnAddVertex.Location = new System.Drawing.Point(84, 3);
@@ -138,6 +131,16 @@
             this.btnAddEdge.Text = "Dodaj krawędź";
             this.btnAddEdge.UseVisualStyleBackColor = true;
             this.btnAddEdge.Click += new System.EventHandler(this.BtnAddEdgeClick);
+            // 
+            // btnGenerateMatrix
+            // 
+            this.btnGenerateMatrix.Location = new System.Drawing.Point(302, 3);
+            this.btnGenerateMatrix.Name = "btnGenerateMatrix";
+            this.btnGenerateMatrix.Size = new System.Drawing.Size(187, 23);
+            this.btnGenerateMatrix.TabIndex = 0;
+            this.btnGenerateMatrix.Text = "Generuj Macierz Sąsiedztwa";
+            this.btnGenerateMatrix.UseVisualStyleBackColor = true;
+            this.btnGenerateMatrix.Click += new System.EventHandler(this.btnGenerateMatrix_Click);
             // 
             // Workspace
             // 
@@ -161,7 +164,7 @@
             this.BottomMenu.Controls.Add(this.EditVertexTab);
             this.BottomMenu.Controls.Add(this.EditEdgeTab);
             this.BottomMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BottomMenu.ItemSize = new System.Drawing.Size(0, 1);
+            this.BottomMenu.ItemSize = new System.Drawing.Size(100, 20);
             this.BottomMenu.Location = new System.Drawing.Point(3, 201);
             this.BottomMenu.Name = "BottomMenu";
             this.BottomMenu.SelectedIndex = 0;
@@ -172,10 +175,12 @@
             // 
             // SelectTab
             // 
+            this.SelectTab.AutoScroll = true;
             this.SelectTab.Controls.Add(this.label1);
-            this.SelectTab.Location = new System.Drawing.Point(4, 5);
+            this.SelectTab.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.SelectTab.Location = new System.Drawing.Point(4, 24);
             this.SelectTab.Name = "SelectTab";
-            this.SelectTab.Size = new System.Drawing.Size(665, 85);
+            this.SelectTab.Size = new System.Drawing.Size(665, 66);
             this.SelectTab.TabIndex = 3;
             this.SelectTab.Text = "Select";
             this.SelectTab.UseVisualStyleBackColor = true;
@@ -191,25 +196,13 @@
             // 
             // AddVertexTab
             // 
-            this.AddVertexTab.Controls.Add(this.cbAutoCompleteGraph);
             this.AddVertexTab.Controls.Add(this.label2);
-            this.AddVertexTab.Location = new System.Drawing.Point(4, 5);
+            this.AddVertexTab.Location = new System.Drawing.Point(4, 24);
             this.AddVertexTab.Name = "AddVertexTab";
-            this.AddVertexTab.Size = new System.Drawing.Size(665, 85);
+            this.AddVertexTab.Size = new System.Drawing.Size(665, 66);
             this.AddVertexTab.TabIndex = 4;
             this.AddVertexTab.Text = "Add vertex";
             this.AddVertexTab.UseVisualStyleBackColor = true;
-            // 
-            // cbAutoCompleteGraph
-            // 
-            this.cbAutoCompleteGraph.AutoSize = true;
-            this.cbAutoCompleteGraph.Location = new System.Drawing.Point(6, 16);
-            this.cbAutoCompleteGraph.Name = "cbAutoCompleteGraph";
-            this.cbAutoCompleteGraph.Size = new System.Drawing.Size(224, 17);
-            this.cbAutoCompleteGraph.TabIndex = 1;
-            this.cbAutoCompleteGraph.Text = "Dodaj automatycznie wszystkie krawędzie";
-            this.cbAutoCompleteGraph.UseVisualStyleBackColor = true;
-            this.cbAutoCompleteGraph.CheckedChanged += new System.EventHandler(this.cbAutoCompleteGraph_CheckedChanged);
             // 
             // label2
             // 
@@ -222,25 +215,32 @@
             // 
             // AddEdgeTab
             // 
+            this.AddEdgeTab.Controls.Add(this.label7);
+            this.AddEdgeTab.Controls.Add(this.tbAddEdgeValue);
             this.AddEdgeTab.Controls.Add(this.cbDirected);
             this.AddEdgeTab.Controls.Add(this.label3);
-            this.AddEdgeTab.Location = new System.Drawing.Point(4, 5);
+            this.AddEdgeTab.Location = new System.Drawing.Point(4, 24);
             this.AddEdgeTab.Name = "AddEdgeTab";
-            this.AddEdgeTab.Size = new System.Drawing.Size(665, 85);
+            this.AddEdgeTab.Size = new System.Drawing.Size(665, 66);
             this.AddEdgeTab.TabIndex = 5;
             this.AddEdgeTab.Text = "Add edge";
             this.AddEdgeTab.UseVisualStyleBackColor = true;
             // 
-            // cbDirected
+            // label7
             // 
-            this.cbDirected.AutoSize = true;
-            this.cbDirected.Location = new System.Drawing.Point(3, 16);
-            this.cbDirected.Name = "cbDirected";
-            this.cbDirected.Size = new System.Drawing.Size(124, 17);
-            this.cbDirected.TabIndex = 1;
-            this.cbDirected.Text = "Krawędź skierowana";
-            this.cbDirected.UseVisualStyleBackColor = true;
-            this.cbDirected.CheckedChanged += new System.EventHandler(this.cbDirected_CheckedChanged);
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 39);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(36, 13);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "Waga";
+            // 
+            // tbAddEdgeValue
+            // 
+            this.tbAddEdgeValue.Location = new System.Drawing.Point(48, 36);
+            this.tbAddEdgeValue.Name = "tbAddEdgeValue";
+            this.tbAddEdgeValue.Size = new System.Drawing.Size(100, 20);
+            this.tbAddEdgeValue.TabIndex = 2;
             // 
             // label3
             // 
@@ -263,9 +263,9 @@
             this.EditVertexTab.Controls.Add(this.label6);
             this.EditVertexTab.Controls.Add(this.label5);
             this.EditVertexTab.Controls.Add(this.label4);
-            this.EditVertexTab.Location = new System.Drawing.Point(4, 5);
+            this.EditVertexTab.Location = new System.Drawing.Point(4, 24);
             this.EditVertexTab.Name = "EditVertexTab";
-            this.EditVertexTab.Size = new System.Drawing.Size(665, 85);
+            this.EditVertexTab.Size = new System.Drawing.Size(665, 66);
             this.EditVertexTab.TabIndex = 6;
             this.EditVertexTab.Text = "Edit vertex";
             this.EditVertexTab.UseVisualStyleBackColor = true;
@@ -361,23 +361,53 @@
             // 
             // EditEdgeTab
             // 
+            this.EditEdgeTab.Controls.Add(this.label8);
+            this.EditEdgeTab.Controls.Add(this.tbEditEdgeValue);
             this.EditEdgeTab.Controls.Add(this.btnRemoveEdge);
-            this.EditEdgeTab.Location = new System.Drawing.Point(4, 5);
+            this.EditEdgeTab.Location = new System.Drawing.Point(4, 24);
             this.EditEdgeTab.Name = "EditEdgeTab";
-            this.EditEdgeTab.Size = new System.Drawing.Size(665, 85);
+            this.EditEdgeTab.Size = new System.Drawing.Size(665, 66);
             this.EditEdgeTab.TabIndex = 7;
             this.EditEdgeTab.Text = "Edit edge";
             this.EditEdgeTab.UseVisualStyleBackColor = true;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 6);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(36, 13);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "Waga";
+            // 
+            // tbEditEdgeValue
+            // 
+            this.tbEditEdgeValue.Location = new System.Drawing.Point(45, 3);
+            this.tbEditEdgeValue.Name = "tbEditEdgeValue";
+            this.tbEditEdgeValue.Size = new System.Drawing.Size(100, 20);
+            this.tbEditEdgeValue.TabIndex = 4;
+            this.tbEditEdgeValue.TextChanged += new System.EventHandler(this.tbEditEdgeValue_TextChanged);
+            // 
             // btnRemoveEdge
             // 
-            this.btnRemoveEdge.Location = new System.Drawing.Point(3, 3);
+            this.btnRemoveEdge.Location = new System.Drawing.Point(6, 29);
             this.btnRemoveEdge.Name = "btnRemoveEdge";
             this.btnRemoveEdge.Size = new System.Drawing.Size(75, 23);
             this.btnRemoveEdge.TabIndex = 0;
             this.btnRemoveEdge.Text = "Usuń";
             this.btnRemoveEdge.UseVisualStyleBackColor = true;
             this.btnRemoveEdge.Click += new System.EventHandler(this.btnRemoveEdge_Click);
+            // 
+            // cbDirected
+            // 
+            this.cbDirected.AutoSize = true;
+            this.cbDirected.Location = new System.Drawing.Point(3, 16);
+            this.cbDirected.Name = "cbDirected";
+            this.cbDirected.Size = new System.Drawing.Size(124, 17);
+            this.cbDirected.TabIndex = 1;
+            this.cbDirected.Text = "Krawędź skierowana";
+            this.cbDirected.UseVisualStyleBackColor = true;
+            this.cbDirected.CheckedChanged += new System.EventHandler(this.cbDirected_CheckedChanged);
             // 
             // GraphPanel
             // 
@@ -400,6 +430,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbVertexY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVertexX)).EndInit();
             this.EditEdgeTab.ResumeLayout(false);
+            this.EditEdgeTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -420,9 +451,7 @@
         private System.Windows.Forms.TabPage EditVertexTab;
         private System.Windows.Forms.TabPage EditEdgeTab;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox cbAutoCompleteGraph;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox cbDirected;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbVertexLabel;
         private System.Windows.Forms.Label lblVertexDegree;
@@ -434,5 +463,10 @@
         private System.Windows.Forms.Button btnRemoveEdge;
         private System.Windows.Forms.NumericUpDown tbVertexY;
         private System.Windows.Forms.NumericUpDown tbVertexX;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tbAddEdgeValue;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox tbEditEdgeValue;
+        private System.Windows.Forms.CheckBox cbDirected;
     }
 }

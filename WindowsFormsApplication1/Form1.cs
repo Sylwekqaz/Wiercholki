@@ -25,19 +25,6 @@ namespace WindowsFormsApplication1
         }
 
 
-        private int[,] StwórzMacierzSąciedzctwa(int dimension)  
-        {
-            throw new NotImplementedException();
-            
-        }
-
-
-        private void WgrajMacierzSąciedzctwa(int[,] macierz)
-        {
-            throw new NotImplementedException();
-        }
-
-
 
 
 

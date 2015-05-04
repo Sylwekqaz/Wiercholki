@@ -45,17 +45,6 @@ namespace GraphPanel
             Numerator++;
        
             Vertices.Add(newVertices);
-            if (AutoCompleteGraph)
-            {                
-                foreach (Vertex vertex in Vertices)
-                {
-                    if (newVertices == vertex)
-                    {
-                        continue;
-                    }
-                    AddEdge(newVertices, vertex);
-                }
-            }
         }
 
         public Vertex GetVertex(PointF location)
@@ -121,7 +110,7 @@ namespace GraphPanel
 
         }
 
-        public void AddEdge(Vertex startVertex, Vertex endVertex, bool directed)
+        public void AddEdge(Vertex startVertex, Vertex endVertex, int value, bool directed)
         {
             // terminate when loop edge is not allowed
             if (startVertex == endVertex && !AllowLoopEdges)
@@ -159,6 +148,7 @@ namespace GraphPanel
             // add vertex
             Edges.Add(new Edge()
             {
+                Value = value,
                 StartVertex = startVertex,
                 EndVertex = endVertex,
                 Directed = directed
@@ -169,9 +159,9 @@ namespace GraphPanel
             CurveEdges(startVertex, endVertex);
         }
 
-        public void AddEdge(Vertex startVertex, Vertex endVertex)
+        public void AddEdge(Vertex startVertex, Vertex endVertex,int value)
         {
-            AddEdge(startVertex, endVertex, DirectedEdges);
+            AddEdge(startVertex, endVertex,value, DirectedEdges);
         }
 
         public void CurveEdges()
@@ -259,6 +249,7 @@ namespace GraphPanel
         public PointF Location { get; set; }
 
         public string Label { get; set; }
+
     }
 
 
@@ -274,7 +265,7 @@ namespace GraphPanel
 
         public bool Directed { get; set; }
 
-        public int Value = 1;  // { get; set; }
+        public int Value  { get; set; }
     }
 
     #endregion
