@@ -31,7 +31,7 @@ namespace GraphPanel
                     _autoFillInprogress = false;
                     break;
                 case 4:
-                    tbEditEdgeValue.Text = _selectedEdge.Value.ToString();
+                   
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -48,10 +48,8 @@ namespace GraphPanel
 
         private void VertexTextChanged()
         {
-            
             if (!_autoFillInprogress)
             {
-                
                 if (_selectedVertex == null)
                 {
                     BottomMenu.SelectedIndex = 0;
@@ -116,6 +114,16 @@ namespace GraphPanel
             if (tbVertexLabel.Focus())
             {
                 VertexTextChanged();
+            }
+        }
+
+        private void tbEditEdgeValue_TextChanged(object sender, System.EventArgs e)
+        {
+            if (tbEditEdgeValue.Focus())
+            {
+                int result;
+                int.TryParse(tbEditEdgeValue.Text, out result);
+                _selectedEdge.Value = result;
             }
         }
     }

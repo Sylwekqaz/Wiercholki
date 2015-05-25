@@ -25,11 +25,6 @@ namespace GraphPanel
             Graph.FloydWarschalAlghoritm(matrix);
         }
 
-        private void tbEditEdgeValue_TextChanged(object sender, System.EventArgs e)
-        {
-            int result;
-            int.TryParse(tbEditEdgeValue.Text, out result);
-            _selectedEdge.Value = result;
-        }
+        
     }
 }

@@ -80,6 +80,7 @@ namespace GraphPanel
                             _selectedEdge = Graph.GetEdge(e.Location);
                             if (_selectedEdge != null)
                             {
+                                tbEditEdgeValue.Text = _selectedEdge.Value.ToString();
                                 BottomMenu.SelectedIndex = 4;
                             }
                             break;
@@ -109,7 +110,7 @@ namespace GraphPanel
                     switch (BtnState)
                     {
                         case BtnStates.Select:
-
+                            
 
                             break;
                         case BtnStates.AddVertex:

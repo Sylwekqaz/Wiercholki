@@ -43,6 +43,7 @@
             this.AddEdgeTab = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
             this.tbAddEdgeValue = new System.Windows.Forms.TextBox();
+            this.cbDirected = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.EditVertexTab = new System.Windows.Forms.TabPage();
             this.tbVertexY = new System.Windows.Forms.NumericUpDown();
@@ -58,7 +59,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.tbEditEdgeValue = new System.Windows.Forms.TextBox();
             this.btnRemoveEdge = new System.Windows.Forms.Button();
-            this.cbDirected = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.BottomMenu.SuspendLayout();
@@ -164,7 +164,7 @@
             this.BottomMenu.Controls.Add(this.EditVertexTab);
             this.BottomMenu.Controls.Add(this.EditEdgeTab);
             this.BottomMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BottomMenu.ItemSize = new System.Drawing.Size(100, 20);
+            this.BottomMenu.ItemSize = new System.Drawing.Size(0, 2);
             this.BottomMenu.Location = new System.Drawing.Point(3, 201);
             this.BottomMenu.Name = "BottomMenu";
             this.BottomMenu.SelectedIndex = 0;
@@ -219,9 +219,9 @@
             this.AddEdgeTab.Controls.Add(this.tbAddEdgeValue);
             this.AddEdgeTab.Controls.Add(this.cbDirected);
             this.AddEdgeTab.Controls.Add(this.label3);
-            this.AddEdgeTab.Location = new System.Drawing.Point(4, 24);
+            this.AddEdgeTab.Location = new System.Drawing.Point(4, 6);
             this.AddEdgeTab.Name = "AddEdgeTab";
-            this.AddEdgeTab.Size = new System.Drawing.Size(665, 66);
+            this.AddEdgeTab.Size = new System.Drawing.Size(665, 84);
             this.AddEdgeTab.TabIndex = 5;
             this.AddEdgeTab.Text = "Add edge";
             this.AddEdgeTab.UseVisualStyleBackColor = true;
@@ -241,6 +241,17 @@
             this.tbAddEdgeValue.Name = "tbAddEdgeValue";
             this.tbAddEdgeValue.Size = new System.Drawing.Size(100, 20);
             this.tbAddEdgeValue.TabIndex = 2;
+            // 
+            // cbDirected
+            // 
+            this.cbDirected.AutoSize = true;
+            this.cbDirected.Location = new System.Drawing.Point(3, 16);
+            this.cbDirected.Name = "cbDirected";
+            this.cbDirected.Size = new System.Drawing.Size(124, 17);
+            this.cbDirected.TabIndex = 1;
+            this.cbDirected.Text = "Krawędź skierowana";
+            this.cbDirected.UseVisualStyleBackColor = true;
+            this.cbDirected.CheckedChanged += new System.EventHandler(this.cbDirected_CheckedChanged);
             // 
             // label3
             // 
@@ -397,17 +408,6 @@
             this.btnRemoveEdge.Text = "Usuń";
             this.btnRemoveEdge.UseVisualStyleBackColor = true;
             this.btnRemoveEdge.Click += new System.EventHandler(this.btnRemoveEdge_Click);
-            // 
-            // cbDirected
-            // 
-            this.cbDirected.AutoSize = true;
-            this.cbDirected.Location = new System.Drawing.Point(3, 16);
-            this.cbDirected.Name = "cbDirected";
-            this.cbDirected.Size = new System.Drawing.Size(124, 17);
-            this.cbDirected.TabIndex = 1;
-            this.cbDirected.Text = "Krawędź skierowana";
-            this.cbDirected.UseVisualStyleBackColor = true;
-            this.cbDirected.CheckedChanged += new System.EventHandler(this.cbDirected_CheckedChanged);
             // 
             // GraphPanel
             // 
