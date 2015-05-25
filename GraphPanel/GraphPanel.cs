@@ -22,6 +22,13 @@ namespace GraphPanel
         {
             int dim = Graph.CountVerticles();
             int? [,] matrix = new int?[dim, dim];
+                for(int indeks =0; indeks<matrix.GetLength(0);indeks++)
+                {
+                    for (int indeks2 = 0; indeks2 < matrix.GetLength(1);indeks2++)
+                    {
+                        matrix[indeks, indeks2] = 100000;
+                    }
+                }
             Graph.FloydWarschalAlghoritm(matrix);
         }
 

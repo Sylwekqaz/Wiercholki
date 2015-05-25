@@ -63,7 +63,7 @@ namespace GraphPanel
             return suma;
         }
 
-        public void FloydWarschalAlghoritm(int?[,] matrix)
+        public int?[,]  FloydWarschalAlghoritm(int?[,] matrix)
         {
             // macierz n x n jest zadeklarowana wczesniej.
             for (int i = 0; i < matrix.GetLength(0); i++)
@@ -99,15 +99,25 @@ namespace GraphPanel
                 {
                     for (int v = 0; v < matrix.GetLength(0); v++)
                     {
-                        // d[u,v] > d[u,k] + d[k,v].
-                        if (matrix[u, v] > matrix[u, k] + matrix[k, v])
+                       
+                        if (matrix[u, v] > matrix[u, k] + matrix[k, v])  //&& matrix[u, k] + matrix[k, v] != null
+                            //max_int > max_int + 5    =  true..
+                            //&& matrix[u,v] != null
+                            //null>3 -> false
+                            //2,3->null  a 5 
+                        //   null > 0 + null;  -> false
+                        //  k = 0, u = 1, v = 3   zmiana
+                            //  k = 0, u=3, v =2   zmiana
+
+                            // k = 1, v = 0, u = 2 ;     u,v = 10.0000 >  u,k = 10.0000  +  k,v = - 4  
                         {
                             matrix[u, v] = matrix[u, k] + matrix[k, v];
                         }
                     }
+                //}
                 }
             }
-
+           return matrix;
         }
 
         public void AddEdge(Vertex startVertex, Vertex endVertex, int value, bool directed)
