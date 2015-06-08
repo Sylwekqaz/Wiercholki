@@ -115,6 +115,7 @@ namespace GraphPanel
                             break;
                         case BtnStates.AddVertex:
                             Graph.AddVertex(e.Location);
+                            UpdateFloidMarshal();
                             break;
                         case BtnStates.AddEdge:
 
@@ -149,6 +150,8 @@ namespace GraphPanel
                         int.TryParse(tbAddEdgeValue.Text, out result);
 
                         Graph.AddEdge(_selectedVertex, endVertex, result);
+
+                        UpdateFloidMarshal();
 
                         _panelState = PanelStates.Idle;
                         _selectedVertex = null;

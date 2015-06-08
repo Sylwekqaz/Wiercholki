@@ -63,8 +63,13 @@ namespace GraphPanel
             return suma;
         }
 
-        public int?[,]  FloydWarschalAlghoritm(int?[,] matrix)
+        public double[,]  FloydWarschalAlghoritm()
         {
+
+            int dim = CountVerticles();
+            var matrix = new double[dim, dim];
+
+
             // macierz n x n jest zadeklarowana wczesniej.
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
@@ -73,6 +78,10 @@ namespace GraphPanel
                     if (i == j )
                     {
                         matrix[i, j] = 0;  //0 na przekątnej, gdzie indziej null.
+                    }
+                    else
+                    {
+                        matrix[i, j] = double.PositiveInfinity;
                     }
                 }
             }
@@ -85,8 +94,8 @@ namespace GraphPanel
              //Następnie dla każdej krawędzi u–v grafu w komórce d[u,v] 
              //   umieszczamy wagę krawędzi w(u–v). Wartość d[i,j] = null oznacza, że wierzchołek i-ty nie łączy się krawędzią 
              //   z wierzchołkiem j-tym (ale, jak zobaczymy dalej, może istnieć ścieżka łącząca te wierzchołki, a wtedy algorytm wprowadzi do d[i,j] jej koszt).
-                int start = Convert.ToInt32(edge.StartVertex.Label);
-                int end = Convert.ToInt32(edge.EndVertex.Label);
+                int start = this.Vertices.IndexOf(edge.StartVertex);
+                int end = this.Vertices.IndexOf(edge.EndVertex);
                 //domyslnie value ustawiłem na 1.
                 if (start != end) matrix[start, end] = edge.Value;
                 if (edge.Directed == false) matrix[end, start] = edge.Value;

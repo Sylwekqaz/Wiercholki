@@ -33,7 +33,6 @@
             this.btnSelect = new System.Windows.Forms.Button();
             this.btnAddVertex = new System.Windows.Forms.Button();
             this.btnAddEdge = new System.Windows.Forms.Button();
-            this.btnGenerateMatrix = new System.Windows.Forms.Button();
             this.Workspace = new System.Windows.Forms.Panel();
             this.BottomMenu = new System.Windows.Forms.TabControl();
             this.SelectTab = new System.Windows.Forms.TabPage();
@@ -95,7 +94,6 @@
             this.flowLayoutPanel1.Controls.Add(this.btnSelect);
             this.flowLayoutPanel1.Controls.Add(this.btnAddVertex);
             this.flowLayoutPanel1.Controls.Add(this.btnAddEdge);
-            this.flowLayoutPanel1.Controls.Add(this.btnGenerateMatrix);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -132,16 +130,6 @@
             this.btnAddEdge.UseVisualStyleBackColor = true;
             this.btnAddEdge.Click += new System.EventHandler(this.BtnAddEdgeClick);
             // 
-            // btnGenerateMatrix
-            // 
-            this.btnGenerateMatrix.Location = new System.Drawing.Point(302, 3);
-            this.btnGenerateMatrix.Name = "btnGenerateMatrix";
-            this.btnGenerateMatrix.Size = new System.Drawing.Size(187, 23);
-            this.btnGenerateMatrix.TabIndex = 0;
-            this.btnGenerateMatrix.Text = "Generuj Macierz Sąsiedztwa";
-            this.btnGenerateMatrix.UseVisualStyleBackColor = true;
-            this.btnGenerateMatrix.Click += new System.EventHandler(this.btnGenerateMatrix_Click);
-            // 
             // Workspace
             // 
             this.Workspace.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -164,7 +152,7 @@
             this.BottomMenu.Controls.Add(this.EditVertexTab);
             this.BottomMenu.Controls.Add(this.EditEdgeTab);
             this.BottomMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BottomMenu.ItemSize = new System.Drawing.Size(0, 2);
+            this.BottomMenu.ItemSize = new System.Drawing.Size(100, 20);
             this.BottomMenu.Location = new System.Drawing.Point(3, 201);
             this.BottomMenu.Name = "BottomMenu";
             this.BottomMenu.SelectedIndex = 0;
@@ -219,9 +207,9 @@
             this.AddEdgeTab.Controls.Add(this.tbAddEdgeValue);
             this.AddEdgeTab.Controls.Add(this.cbDirected);
             this.AddEdgeTab.Controls.Add(this.label3);
-            this.AddEdgeTab.Location = new System.Drawing.Point(4, 6);
+            this.AddEdgeTab.Location = new System.Drawing.Point(4, 24);
             this.AddEdgeTab.Name = "AddEdgeTab";
-            this.AddEdgeTab.Size = new System.Drawing.Size(665, 84);
+            this.AddEdgeTab.Size = new System.Drawing.Size(665, 66);
             this.AddEdgeTab.TabIndex = 5;
             this.AddEdgeTab.Text = "Add edge";
             this.AddEdgeTab.UseVisualStyleBackColor = true;
@@ -375,9 +363,9 @@
             this.EditEdgeTab.Controls.Add(this.label8);
             this.EditEdgeTab.Controls.Add(this.tbEditEdgeValue);
             this.EditEdgeTab.Controls.Add(this.btnRemoveEdge);
-            this.EditEdgeTab.Location = new System.Drawing.Point(4, 24);
+            this.EditEdgeTab.Location = new System.Drawing.Point(4, 6);
             this.EditEdgeTab.Name = "EditEdgeTab";
-            this.EditEdgeTab.Size = new System.Drawing.Size(665, 66);
+            this.EditEdgeTab.Size = new System.Drawing.Size(665, 84);
             this.EditEdgeTab.TabIndex = 7;
             this.EditEdgeTab.Text = "Edit edge";
             this.EditEdgeTab.UseVisualStyleBackColor = true;
@@ -441,7 +429,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Button btnAddVertex;
-        private System.Windows.Forms.Button btnGenerateMatrix;
         private System.Windows.Forms.Button btnAddEdge;
         private System.Windows.Forms.Panel Workspace;
         private System.Windows.Forms.TabControl BottomMenu;

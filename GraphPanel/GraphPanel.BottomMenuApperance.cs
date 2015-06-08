@@ -95,6 +95,7 @@ namespace GraphPanel
                 _selectedVertex = null;
             }
             Redraw();
+            UpdateFloidMarshal();
             BottomMenu.SelectedIndex = 0;
         }
 
@@ -106,6 +107,7 @@ namespace GraphPanel
                 _selectedVertex = null;
             }
             Redraw();
+            UpdateFloidMarshal();
             BottomMenu.SelectedIndex = 0;
         }
 
@@ -124,6 +126,7 @@ namespace GraphPanel
                 int result;
                 int.TryParse(tbEditEdgeValue.Text, out result);
                 _selectedEdge.Value = result;
+                UpdateFloidMarshal();
             }
         }
     }

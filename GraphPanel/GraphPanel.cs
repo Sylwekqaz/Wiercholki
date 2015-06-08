@@ -5,6 +5,9 @@ namespace GraphPanel
 {
     public partial class GraphPanel : UserControl
     {
+        double[,] FloidMarshalMatrix;
+
+
         public GraphPanel()
         {
             InitializeComponent();
@@ -18,19 +21,17 @@ namespace GraphPanel
             BtnState = BtnStates.Select;
         }
 
-        private void btnGenerateMatrix_Click(object sender, System.EventArgs e)
+ 
+
+
+        private void UpdateFloidMarshal()
         {
-            int dim = Graph.CountVerticles();
-            int? [,] matrix = new int?[dim, dim];
-                for(int indeks =0; indeks<matrix.GetLength(0);indeks++)
-                {
-                    for (int indeks2 = 0; indeks2 < matrix.GetLength(1);indeks2++)
-                    {
-                        matrix[indeks, indeks2] = 100000;
-                    }
-                }
-            Graph.FloydWarschalAlghoritm(matrix);
+            FloidMarshalMatrix = Graph.FloydWarschalAlghoritm();
+
         }
+
+
+
 
         
     }
