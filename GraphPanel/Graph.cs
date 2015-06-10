@@ -63,11 +63,12 @@ namespace GraphPanel
             return suma;
         }
 
-        public double[,]  FloydWarschalAlghoritm()
+        public double[,]  FloydWarschalAlghoritm(out double[,] matrix , out int?[,] prev)
         {
 
             int dim = CountVerticles();
-            var matrix = new double[dim, dim];
+            matrix = new double[dim, dim];
+            prev = new int?[dim,dim];
 
 
             // macierz n x n jest zadeklarowana wczesniej.
@@ -78,6 +79,7 @@ namespace GraphPanel
                     if (i == j )
                     {
                         matrix[i, j] = 0;  //0 na przekątnej, gdzie indziej null.
+                        prev[i, j] = i;
                     }
                     else
                     {
@@ -97,8 +99,16 @@ namespace GraphPanel
                 int start = this.Vertices.IndexOf(edge.StartVertex);
                 int end = this.Vertices.IndexOf(edge.EndVertex);
                 //domyslnie value ustawiłem na 1.
-                if (start != end) matrix[start, end] = edge.Value;
-                if (edge.Directed == false) matrix[end, start] = edge.Value;
+                if (start != end)
+                {
+                    matrix[start, end] = edge.Value;
+                    prev[start, end] = start;
+                }
+                if (edge.Directed == false)
+                {
+                    matrix[end, start] = edge.Value;
+                    prev[end, start] = end;
+                }
             }
 
 
@@ -121,6 +131,7 @@ namespace GraphPanel
                             // k = 1, v = 0, u = 2 ;     u,v = 10.0000 >  u,k = 10.0000  +  k,v = - 4  
                         {
                             matrix[u, v] = matrix[u, k] + matrix[k, v];
+                            prev[u, v] = prev[k, v];
                         }
                     }
                 //}

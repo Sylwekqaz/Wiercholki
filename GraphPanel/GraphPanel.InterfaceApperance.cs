@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GraphPanel
@@ -9,7 +10,8 @@ namespace GraphPanel
         {
             Select,
             AddVertex,
-            AddEdge
+            AddEdge,
+            SerchWay
         }
 
         private BtnStates _btnState;
@@ -22,13 +24,16 @@ namespace GraphPanel
                 btnSelect.Enabled = value != BtnStates.Select;
                 btnAddVertex.Enabled = value != BtnStates.AddVertex;
                 btnAddEdge.Enabled = value != BtnStates.AddEdge;
+                btnSerchWay.Enabled = value != BtnStates.SerchWay;
                 _btnState = value;
 
                 _panelState = PanelStates.Idle;
                 _selectedVertex = null;
                 _selectedEdge = null;
 
+
                 BottomMenu.SelectTab((int) value);
+
                 Redraw();
             }
         }
@@ -60,6 +65,11 @@ namespace GraphPanel
             BtnState = BtnStates.AddEdge;
         }
 
+        private void BtnSerchWayClick(object sender, EventArgs e)
+        {
+            BtnState = BtnStates.SerchWay;
+        }
+
         private void GrapchMouseDown(object sender, MouseEventArgs e)
         {
             switch (_panelState)
@@ -73,20 +83,50 @@ namespace GraphPanel
                             {
                                 _panelState = PanelStates.MovingVertex;
                                 _selectedEdge = null;
-                                BottomMenu.SelectedIndex = 3;
+                                selectedVertices[0] = null;
+                                selectedVertices[1] = null;
+                                selectedEdges.Clear();
+
+                                BottomMenu.SelectedIndex = 4;
                                 BottomMenu_SelectedIndexChanged(null, null);
                                 return;
                             }
                             _selectedEdge = Graph.GetEdge(e.Location);
                             if (_selectedEdge != null)
                             {
+                                selectedVertices[0] = null;
+                                selectedVertices[1] = null;
+                                selectedEdges.Clear();
                                 tbEditEdgeValue.Text = _selectedEdge.Value.ToString();
-                                BottomMenu.SelectedIndex = 4;
+                                BottomMenu.SelectedIndex = 5;
                             }
                             break;
                         case BtnStates.AddVertex:
                             break;
                         case BtnStates.AddEdge:
+                            break;
+                        case BtnStates.SerchWay:
+                            if (e.Button == MouseButtons.Left)
+                            {
+                                selectedVertices[0] = _selectedVertex = Graph.GetVertex(e.Location);
+                            }
+                            if (e.Button == MouseButtons.Right)
+                            {
+                                selectedVertices[1] = _selectedVertex = Graph.GetVertex(e.Location);
+                            }
+                            if (selectedVertices[0] != null && selectedVertices[1] != null)
+                            {
+                                int start = Graph.Vertices.IndexOf(selectedVertices[0]);
+                                int end = Graph.Vertices.IndexOf(selectedVertices[1]);
+                                if (FloidMarshalMatrix[start, end] < double.PositiveInfinity)
+                                {
+                                    selectedEdges = GetWay(start, end);
+                                }
+                            }
+
+                            UpdateLabel();
+
+
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();
@@ -110,7 +150,7 @@ namespace GraphPanel
                     switch (BtnState)
                     {
                         case BtnStates.Select:
-                            
+
 
                             break;
                         case BtnStates.AddVertex:
@@ -127,6 +167,8 @@ namespace GraphPanel
                             }
 
 
+                            break;
+                        case BtnStates.SerchWay:
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();

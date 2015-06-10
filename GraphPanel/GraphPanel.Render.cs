@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace GraphPanel
@@ -14,6 +15,7 @@ namespace GraphPanel
         private Bitmap _graphLayerBitmap;
         private Bitmap _tempLayerBitmap;
         private Bitmap _selectLayerBitmap;
+
         private readonly Pen _verticlePen = new Pen(Color.Black, 1);
         private readonly Pen _verticleSelectedPen = new Pen(Color.DeepSkyBlue, 3);
         private readonly Pen _edgeDirectedPen = new Pen(Color.Black, 1) {CustomEndCap = new AdjustableArrowCap(3, 5)};
@@ -50,7 +52,8 @@ namespace GraphPanel
                 {
                     var rectangle = new RectangleF(vertex.Location.X - 5, vertex.Location.Y - 5, 10, 10);
 
-                    _graphLayerGraphics.DrawEllipse(vertex == _selectedVertex ? _verticleSelectedPen : _verticlePen,
+
+                    _graphLayerGraphics.DrawEllipse(vertex == _selectedVertex || selectedVertices.Contains(vertex) ? _verticleSelectedPen : _verticlePen,
                         rectangle);
 
                     StringFormat sf = new StringFormat();
@@ -69,7 +72,7 @@ namespace GraphPanel
                 {
                     Graph.CurveEdges();
                     _graphLayerGraphics.DrawPath(edge.Directed ? _edgeDirectedPen : _edgePen, edge.Path);
-                    if (edge == _selectedEdge)
+                    if (edge == _selectedEdge || selectedEdges.Contains(edge))
                     {
                         _selectLayerGraphics.DrawPath(edge.Directed ? _edgeDirectedSelectedPen : _edgeSelectedPen,
                             edge.Path);

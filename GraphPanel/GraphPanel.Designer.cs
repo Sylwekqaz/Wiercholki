@@ -33,6 +33,7 @@
             this.btnSelect = new System.Windows.Forms.Button();
             this.btnAddVertex = new System.Windows.Forms.Button();
             this.btnAddEdge = new System.Windows.Forms.Button();
+            this.btnSerchWay = new System.Windows.Forms.Button();
             this.Workspace = new System.Windows.Forms.Panel();
             this.BottomMenu = new System.Windows.Forms.TabControl();
             this.SelectTab = new System.Windows.Forms.TabPage();
@@ -44,6 +45,14 @@
             this.tbAddEdgeValue = new System.Windows.Forms.TextBox();
             this.cbDirected = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.WayLabel = new System.Windows.Forms.Label();
+            this.EndVertexLabel = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.StartVertexLabel = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.EditVertexTab = new System.Windows.Forms.TabPage();
             this.tbVertexY = new System.Windows.Forms.NumericUpDown();
             this.tbVertexX = new System.Windows.Forms.NumericUpDown();
@@ -64,6 +73,7 @@
             this.SelectTab.SuspendLayout();
             this.AddVertexTab.SuspendLayout();
             this.AddEdgeTab.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.EditVertexTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbVertexY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVertexX)).BeginInit();
@@ -94,6 +104,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnSelect);
             this.flowLayoutPanel1.Controls.Add(this.btnAddVertex);
             this.flowLayoutPanel1.Controls.Add(this.btnAddEdge);
+            this.flowLayoutPanel1.Controls.Add(this.btnSerchWay);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -130,6 +141,16 @@
             this.btnAddEdge.UseVisualStyleBackColor = true;
             this.btnAddEdge.Click += new System.EventHandler(this.BtnAddEdgeClick);
             // 
+            // btnSerchWay
+            // 
+            this.btnSerchWay.Location = new System.Drawing.Point(302, 3);
+            this.btnSerchWay.Name = "btnSerchWay";
+            this.btnSerchWay.Size = new System.Drawing.Size(93, 23);
+            this.btnSerchWay.TabIndex = 2;
+            this.btnSerchWay.Text = "Szukaj drogi";
+            this.btnSerchWay.UseVisualStyleBackColor = true;
+            this.btnSerchWay.Click += new System.EventHandler(this.BtnSerchWayClick);
+            // 
             // Workspace
             // 
             this.Workspace.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -149,10 +170,11 @@
             this.BottomMenu.Controls.Add(this.SelectTab);
             this.BottomMenu.Controls.Add(this.AddVertexTab);
             this.BottomMenu.Controls.Add(this.AddEdgeTab);
+            this.BottomMenu.Controls.Add(this.tabPage1);
             this.BottomMenu.Controls.Add(this.EditVertexTab);
             this.BottomMenu.Controls.Add(this.EditEdgeTab);
             this.BottomMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BottomMenu.ItemSize = new System.Drawing.Size(100, 20);
+            this.BottomMenu.ItemSize = new System.Drawing.Size(0, 2);
             this.BottomMenu.Location = new System.Drawing.Point(3, 201);
             this.BottomMenu.Name = "BottomMenu";
             this.BottomMenu.SelectedIndex = 0;
@@ -250,6 +272,86 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Kliknij na wierzchołek aby zaznaczyć pierwszy wierzchołek, a póżniej kliknij kole" +
     "jny wierzchołek aby dodać połączenie";
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.WayLabel);
+            this.tabPage1.Controls.Add(this.EndVertexLabel);
+            this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.StartVertexLabel);
+            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.Controls.Add(this.label10);
+            this.tabPage1.Controls.Add(this.label9);
+            this.tabPage1.Location = new System.Drawing.Point(4, 6);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(665, 84);
+            this.tabPage1.TabIndex = 8;
+            this.tabPage1.Text = "SearchWay";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // WayLabel
+            // 
+            this.WayLabel.AutoSize = true;
+            this.WayLabel.Location = new System.Drawing.Point(94, 43);
+            this.WayLabel.Name = "WayLabel";
+            this.WayLabel.Size = new System.Drawing.Size(65, 13);
+            this.WayLabel.TabIndex = 5;
+            this.WayLabel.Text = "Początkowy";
+            // 
+            // EndVertexLabel
+            // 
+            this.EndVertexLabel.AutoSize = true;
+            this.EndVertexLabel.Location = new System.Drawing.Point(94, 30);
+            this.EndVertexLabel.Name = "EndVertexLabel";
+            this.EndVertexLabel.Size = new System.Drawing.Size(65, 13);
+            this.EndVertexLabel.TabIndex = 4;
+            this.EndVertexLabel.Text = "Początkowy";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(7, 43);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(83, 13);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Długość ścieżki";
+            // 
+            // StartVertexLabel
+            // 
+            this.StartVertexLabel.AutoSize = true;
+            this.StartVertexLabel.Location = new System.Drawing.Point(94, 17);
+            this.StartVertexLabel.Name = "StartVertexLabel";
+            this.StartVertexLabel.Size = new System.Drawing.Size(65, 13);
+            this.StartVertexLabel.TabIndex = 2;
+            this.StartVertexLabel.Text = "Początkowy";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 17);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 13);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Początkowy";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 30);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(51, 13);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Końcowy";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 4);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(413, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Zaznacz lewym przyciskiem początkowy wieszchołek i prawym końcowy wieszchołek";
             // 
             // EditVertexTab
             // 
@@ -363,9 +465,9 @@
             this.EditEdgeTab.Controls.Add(this.label8);
             this.EditEdgeTab.Controls.Add(this.tbEditEdgeValue);
             this.EditEdgeTab.Controls.Add(this.btnRemoveEdge);
-            this.EditEdgeTab.Location = new System.Drawing.Point(4, 6);
+            this.EditEdgeTab.Location = new System.Drawing.Point(4, 24);
             this.EditEdgeTab.Name = "EditEdgeTab";
-            this.EditEdgeTab.Size = new System.Drawing.Size(665, 84);
+            this.EditEdgeTab.Size = new System.Drawing.Size(665, 66);
             this.EditEdgeTab.TabIndex = 7;
             this.EditEdgeTab.Text = "Edit edge";
             this.EditEdgeTab.UseVisualStyleBackColor = true;
@@ -413,6 +515,8 @@
             this.AddVertexTab.PerformLayout();
             this.AddEdgeTab.ResumeLayout(false);
             this.AddEdgeTab.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.EditVertexTab.ResumeLayout(false);
             this.EditVertexTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbVertexY)).EndInit();
@@ -455,5 +559,14 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tbEditEdgeValue;
         private System.Windows.Forms.CheckBox cbDirected;
+        private System.Windows.Forms.Button btnSerchWay;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label WayLabel;
+        private System.Windows.Forms.Label EndVertexLabel;
+        private System.Windows.Forms.Label StartVertexLabel;
     }
 }

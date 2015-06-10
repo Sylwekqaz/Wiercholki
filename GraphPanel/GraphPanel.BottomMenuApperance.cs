@@ -18,6 +18,9 @@ namespace GraphPanel
                     cbDirected.Checked = Graph.DirectedEdges;
                     break;
                 case 3:
+                    UpdateLabel();
+                    break;
+                case 4:
                     if (_selectedVertex == null)
                     {
                         BottomMenu.SelectedIndex = 0;
@@ -30,7 +33,7 @@ namespace GraphPanel
                     lblVertexDegree.Text = Graph.GetVertexDegree(_selectedVertex).ToString();
                     _autoFillInprogress = false;
                     break;
-                case 4:
+                case 5:
                    
                     break;
                 default:
@@ -85,6 +88,29 @@ namespace GraphPanel
             {
                 VertexTextChanged();
             }
+        }
+
+
+        private void UpdateLabel()
+        {
+            if (selectedVertices[0] != null && selectedVertices[1] != null)
+            {
+                int start = Graph.Vertices.IndexOf(selectedVertices[0]);
+                int end = Graph.Vertices.IndexOf(selectedVertices[1]);
+                WayLabel.Text = FloidMarshalMatrix[start, end].ToString();
+            }
+            else
+            {
+                WayLabel.Text = "(Brak)";
+            }
+
+            StartVertexLabel.Text = selectedVertices[0] != null
+                ? selectedVertices[0].Label.ToString()
+                : "(Brak)";
+
+            EndVertexLabel.Text = selectedVertices[1] != null
+                ? selectedVertices[1].Label.ToString()
+                : "(Brak)";
         }
 
         private void btnRemoveVertex_Click(object sender, EventArgs e)
