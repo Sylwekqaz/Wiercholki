@@ -45,13 +45,12 @@ namespace GraphPanel
             {
                 if (FloidMarshalMatrix[i, i] != 0)
                 {
-                    if (!tbEditEdgeValue.Focus())
-                    {
+                    
                         MessageBox.Show("Wykryto ujemny cykl", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                         selectedEdges.Clear();
 
-                    }
+                    
 
                     return;
                 }

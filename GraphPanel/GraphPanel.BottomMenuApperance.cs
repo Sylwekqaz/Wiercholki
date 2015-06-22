@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace GraphPanel
 {
@@ -34,7 +35,7 @@ namespace GraphPanel
                     _autoFillInprogress = false;
                     break;
                 case 5:
-                   
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -152,8 +153,21 @@ namespace GraphPanel
                 int result;
                 int.TryParse(tbEditEdgeValue.Text, out result);
                 _selectedEdge.Value = result;
-                UpdateFloidMarshal();
             }
+            Delay(2*1000, (o, a) => this.Invoke((Action) (UpdateFloidMarshal)));
         }
+
+        private static Timer _tmp = new Timer();
+        static void Delay(int ms, EventHandler action)
+        {
+            _tmp.Enabled = false;
+            _tmp.Dispose();
+            _tmp = new Timer { Interval = ms };
+            _tmp.Tick += new EventHandler((o, e) => _tmp.Enabled = false);
+            _tmp.Tick += action;
+            _tmp.Enabled = true;
+        }
+
+        
     }
 }

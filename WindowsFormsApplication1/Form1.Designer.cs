@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace FloydWarshall
 {
     partial class Form1
     {
